@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 515a56f09381d9b4f9199583c99f8975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInput: {fileID: 7327684504031136789}
+  playerInput: {fileID: 2336757369468195168}
   maxAngle: 334
   minAngle: 10
 --- !u!1 &2789795679225795272
@@ -254,7 +254,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9188626593877509824}
-  - component: {fileID: 7327684504031136789}
+  - component: {fileID: 2336757369468195168}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -278,7 +278,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7327684504031136789
+--- !u!114 &2336757369468195168
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -307,7 +307,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8242777605062921624}
-        m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
+        m_TargetAssemblyTypeName: GyroController, Assembly-CSharp
         m_MethodName: ResetView
         m_Mode: 0
         m_Arguments:
@@ -319,11 +319,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 99bf4b2a-bcef-4e78-92af-e08dddd340dc
-    m_ActionName: Weapons/Recenter[/DualShock4GamepadHID/start]
+    m_ActionName: Gyro/Recenter[/DualShock4GamepadHID/start]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8242777605062921624}
-        m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
+        m_TargetAssemblyTypeName: GyroController, Assembly-CSharp
         m_MethodName: MoveStick
         m_Mode: 0
         m_Arguments:
@@ -335,11 +335,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 59730729-b097-4234-b676-f6e98c5e8b38
-    m_ActionName: Weapons/RightStick[/DualShock4GamepadHID/rightStick/up,/DualShock4GamepadHID/rightStick/down,/DualShock4GamepadHID/rightStick/left,/DualShock4GamepadHID/rightStick/right]
+    m_ActionName: Gyro/RightStick[/DualShock4GamepadHID/rightStick/up,/DualShock4GamepadHID/rightStick/down,/DualShock4GamepadHID/rightStick/left,/DualShock4GamepadHID/rightStick/right]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8242777605062921624}
-        m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
+        m_TargetAssemblyTypeName: GyroController, Assembly-CSharp
         m_MethodName: ChangeScheme
         m_Mode: 0
         m_Arguments:
@@ -351,9 +351,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: a13b9dd8-ba40-4177-8743-c5a421af2545
-    m_ActionName: Weapons/ChangeScheme[/DualShock4GamepadHID/select,/DualShock4GamepadHID1/select]
+    m_ActionName: Gyro/ChangeScheme[/DualShock4GamepadHID/select]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: PS4
-  m_DefaultActionMap: Weapons
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Gyro
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

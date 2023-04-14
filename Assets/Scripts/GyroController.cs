@@ -36,7 +36,7 @@ sealed class GyroController : MonoBehaviour
         // Coefficient converting a gyro data value into a degree
         // Note: The actual constant is undocumented and unknown.
         //       I just put a plasible value by guessing.
-        const double GyroToAngle = 16 * 360 / System.Math.PI;
+        const double GyroToAngle = 17.5f * 360 / System.Math.PI;
 
         // Delta time from the last event
         var dt = ctx.time - ctx.control.device.lastUpdateTime;
@@ -55,7 +55,7 @@ sealed class GyroController : MonoBehaviour
     private Quaternion controllerRotation;
     private Vector2 stickMovement = Vector2.zero;
     private int schemenum = 0;
-    private Quaternion totalControllerRotation = Quaternion.identity;
+    private Quaternion totalStickRotation = Quaternion.identity;
 
     // Accumulation of gyro input
     Quaternion _accGyro = Quaternion.identity;
@@ -89,8 +89,6 @@ sealed class GyroController : MonoBehaviour
 
     void Update()
     {
-        Vector3 rotate = _accGyro.eulerAngles;
-        //Debug.LogError(_accGyro);
         // Current status
         var rot = controllerRotation; // use transform.localRotation to not preserve controller rotation past bounds
 
@@ -104,13 +102,19 @@ sealed class GyroController : MonoBehaviour
         {
             //mapping should be normal
         }
-       
-        rot *= _accGyro;
+
+
+        Vector3 newRotation = rot.eulerAngles;
+        newRotation.x += _accGyro.eulerAngles.x;
+        newRotation.y += _accGyro.eulerAngles.y;
+        rot = Quaternion.Euler(newRotation);
         _accGyro = Quaternion.identity;
-        Quaternion stickQuat = new Quaternion(stickMovement.y * Time.deltaTime / -1.375f, stickMovement.x * Time.deltaTime / 2, 0, 1);
-        totalControllerRotation *= stickQuat;
+        Vector3 stickRotVec3 = totalStickRotation.eulerAngles;
+        stickRotVec3.x += -50 * stickMovement.y * Time.deltaTime;
+        stickRotVec3.y += 50 * stickMovement.x * Time.deltaTime;
+        totalStickRotation = Quaternion.Euler(stickRotVec3);
         controllerRotation = rot;
-        transform.localRotation = totalControllerRotation*rot; 
+        transform.localRotation = Quaternion.Euler(stickRotVec3 + newRotation);
         if (transform.localEulerAngles.x < maxAngle && transform.localEulerAngles.x > minAngle)
         {
             if (Mathf.Abs(transform.localEulerAngles.x - maxAngle) < Mathf.Abs(transform.localEulerAngles.x - minAngle)) 
@@ -133,7 +137,7 @@ sealed class GyroController : MonoBehaviour
         {
             //transform.localRotation = Quaternion.identity; use this to not preserve controller rotation past boundaries
             controllerRotation = Quaternion.identity;
-            totalControllerRotation = Quaternion.identity;
+            totalStickRotation = Quaternion.identity;
         }
     }
 

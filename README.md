@@ -6,3 +6,5 @@ Uses the existing visSDK: https://technobotanist.github.io/VisStudioUnityCamera/
 Also includes support for basic gamepad stick movement (which can also be used in conjuction with the gyro for recentering.
 
 Press any button on a gamepad while the scene is running to have a player join.
+
+Credit is appreciated

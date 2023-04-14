@@ -101,13 +101,13 @@ sealed class GyroController : MonoBehaviour
         Quaternion xQuatController = Quaternion.AngleAxis(_accGyro.eulerAngles.x, Vector3.right);
         controllerRotation = yQuatController * controllerRotation * xQuatController; // use transform.localRotation to not preserve controller rotation past bounds
         _accGyro = Quaternion.identity;
-        Quaternion yQuatStick = Quaternion.AngleAxis(stickMovement.x * Time.deltaTime * 200, Vector3.up);
-        Quaternion xQuatStick = Quaternion.AngleAxis(stickMovement.y * Time.deltaTime * -200, Vector3.right);
+        Quaternion yQuatStick = Quaternion.AngleAxis(stickMovement.x * Time.deltaTime * 100, Vector3.up);
+        Quaternion xQuatStick = Quaternion.AngleAxis(stickMovement.y * Time.deltaTime * -100, Vector3.right);
         totalStickRotation = yQuatStick * totalStickRotation * xQuatStick;
         Quaternion xQuatTotal = Quaternion.AngleAxis(controllerRotation.eulerAngles.y + totalStickRotation.eulerAngles.y, Vector3.up);
         Quaternion yQuatTotal = Quaternion.AngleAxis(controllerRotation.eulerAngles.x + totalStickRotation.eulerAngles.x, Vector3.right);
         transform.localRotation = xQuatTotal * Quaternion.identity * yQuatTotal; //Quaternion.Euler(stickRotVec3 + newRotation);
-        if (transform.localEulerAngles.x < maxAngle && transform.localEulerAngles.x > minAngle && false)
+        if (transform.localEulerAngles.x < maxAngle && transform.localEulerAngles.x > minAngle)
         {
             if (Mathf.Abs(transform.localEulerAngles.x - maxAngle) < Mathf.Abs(transform.localEulerAngles.x - minAngle)) 
             {
